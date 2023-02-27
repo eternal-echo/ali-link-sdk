@@ -7,6 +7,8 @@
  * 需要用户关注或修改的部分, 已经用 TODO 在注释中标明
  *
  */
+#include <rtthread.h>
+
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
@@ -17,9 +19,13 @@
 #include "aiot_mqtt_api.h"
 
 /* TODO: 替换为自己设备的三元组 */
-char *product_key       = "${YourProductKey}";
-char *device_name       = "${YourDeviceName}";
-char *device_secret     = "${YourDeviceSecret}";
+#define PKG_USING_ALI_LINK_PRODUCT_KEY "hcixG5BeXXR"
+#define PKG_USING_ALI_LINK_PRODUCT_SECRET "X8WmP94UNIycqpeR"
+#define PKG_USING_ALI_LINK_DEVICE_NAME "coordinator-wifi"
+#define PKG_USING_ALI_LINK_DEVICE_SECRET "c767d9aba27822f2a8ee3819c8e3cbfb"
+char *product_key       = PKG_USING_ALI_LINK_PRODUCT_KEY;
+char *device_name       = PKG_USING_ALI_LINK_DEVICE_NAME;
+char *device_secret     = PKG_USING_ALI_LINK_DEVICE_SECRET;
 
 /*
     TODO: 替换为自己实例的接入点
@@ -36,7 +42,7 @@ char *device_secret     = "${YourDeviceSecret}";
 
     详情请见: https://help.aliyun.com/document_detail/147356.html
 */
-char  *mqtt_host = "${YourInstanceId}.mqtt.iothub.aliyuncs.com";
+char  *mqtt_host = "hcixG5BeXXR.iot-as-mqtt.cn-shanghai.aliyuncs.com";
 
 /* 位于portfiles/aiot_port文件夹下的系统适配函数集合 */
 extern aiot_sysdep_portfile_t g_aiot_sysdep_portfile;
@@ -165,7 +171,7 @@ void *demo_mqtt_recv_thread(void *args)
     return NULL;
 }
 
-int main(int argc, char *argv[])
+static int mqtt_demo_main(int argc, char *argv[])
 {
     int32_t     res = STATE_SUCCESS;
     void       *mqtt_handle = NULL;
@@ -295,3 +301,6 @@ int main(int argc, char *argv[])
     return 0;
 }
 
+#ifdef FINSH_USING_MSH
+MSH_CMD_EXPORT_ALIAS(mqtt_demo_main, ali_mqtt_sample, ali mqtt sample);
+#endif

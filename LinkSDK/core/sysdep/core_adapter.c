@@ -15,7 +15,7 @@ static aiot_sysdep_portfile_t g_aiot_portfile;
  *  虽然物联网平台接收TCP方式的连接, 但我们不推荐这样做, TLS是更安全的通信方式
  *
  */
-#define CORE_ADAPTER_MBEDTLS_ENABLED
+// #define CORE_ADAPTER_MBEDTLS_ENABLED
 
 /*
  *  CORE_ADAPTER_DTLS_ENABLED 不是一个用户需要关心的编译开关,用于关闭DTLS相关功能
