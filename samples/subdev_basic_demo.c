@@ -4,6 +4,8 @@
  * 需要用户关注或修改的部分, 已经用 TODO 在注释中标明
  *
  */
+#include <rtthread.h>
+
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
@@ -13,11 +15,16 @@
 #include "aiot_sysdep_api.h"
 #include "aiot_mqtt_api.h"
 #include "aiot_subdev_api.h"
+#include "cJSON.h"
 
 /* TODO: 替换为自己网关设备的三元组 */
-char *product_key       = "${GatewayProductKey}";
-char *device_name       = "${GatewayDeviceName}";
-char *device_secret     = "${GatewayDeviceSecret}";
+#define PKG_USING_ALI_LINK_PRODUCT_KEY "hcixxJENrUz"
+#define PKG_USING_ALI_LINK_PRODUCT_SECRET "Cryjc5840O1b89Nj"
+#define PKG_USING_ALI_LINK_DEVICE_NAME "coordinator0"
+#define PKG_USING_ALI_LINK_DEVICE_SECRET "bafdf3991aeab4fe2991e3d281a9f725"
+char *product_key       = PKG_USING_ALI_LINK_PRODUCT_KEY;
+char *device_name       = PKG_USING_ALI_LINK_DEVICE_NAME;
+char *device_secret     = PKG_USING_ALI_LINK_DEVICE_SECRET;
 
 /*
     TODO: 替换为自己实例的接入点
@@ -34,7 +41,7 @@ char *device_secret     = "${GatewayDeviceSecret}";
 
     详情请见: https://help.aliyun.com/document_detail/147356.html
 */
-char  *mqtt_host = "${YourInstanceId}.mqtt.iothub.aliyuncs.com";
+char  *mqtt_host = "hcixxJENrUz.iot-as-mqtt.cn-shanghai.aliyuncs.com";
 
 /* 位于portfiles/aiot_port文件夹下的系统适配函数集合 */
 extern aiot_sysdep_portfile_t g_aiot_sysdep_portfile;
@@ -50,22 +57,16 @@ static uint8_t g_mqtt_recv_thread_running = 0;
 /* TODO: 替换为用户自己子设备设备的三元组 */
 aiot_subdev_dev_t g_subdev[] = {
     {
-        "${SubdevProductKey_1}",
-        "${SubdevDeviceName_1}",
-        "${SubdevDeviceSecret_1}",
-        "${SubdevProductSecret_1}",
+        "hcixG5BeXXR",
+        "node0",
+        "4fbe100e3201e1bebec25d5693ab3976",
+        "X8WmP94UNIycqpeR",
     },
     {
-        "${SubdevProductKey_2}",
-        "${SubdevDeviceName_2}",
-        "${SubdevDeviceSecret_2}",
-        "${SubdevProductSecret_2}",
-    },
-    {
-        "${SubdevProductKey_3}",
-        "${SubdevDeviceName_3}",
-        "${SubdevDeviceSecret_3}",
-        "${SubdevProductSecret_3}",
+        "hcixG5BeXXR",
+        "node1",
+        "fee663524a1b1662a0c42d48ef8ca280",
+        "X8WmP94UNIycqpeR",
     },
 };
 
@@ -208,12 +209,10 @@ int32_t demo_mqtt_start(void **handle)
     }
 
     /* TODO: 如果以下代码不被注释, 则例程会用TCP而不是TLS连接云平台 */
-    /*
     {
         memset(&cred, 0, sizeof(aiot_sysdep_network_cred_t));
         cred.option = AIOT_SYSDEP_NETWORK_CRED_NONE;
     }
-    */
 
     /* 配置MQTT服务器地址 */
     aiot_mqtt_setopt(mqtt_handle, AIOT_MQTTOPT_HOST, (void *)mqtt_host);
@@ -328,7 +327,7 @@ void demo_subdev_recv_handler(void *handle, const aiot_subdev_recv_t *packet, vo
     }
 }
 
-int main(int argc, char *argv[])
+int subdev_demo_main(int argc, char *argv[])
 {
     int32_t res = STATE_SUCCESS;
     void *mqtt_handle = NULL, *subdev_handle = NULL;
@@ -414,8 +413,8 @@ int main(int argc, char *argv[])
     /* 子设备按照alink协议上报物模型中的属性消息. 格式须为json. topic中填入子设备自己的product_key, device_name. 每条消息id字段要+1 */
     /*
     {
-        char *pub_topic = "/sys/${SubdevProductKey_1}/${SubdevDeviceName_1}/thing/event/property/post";
-        char *pub_payload = "{\"id\":\"1\",\"version\":\"1.0\",\"params\":{\"LightSwitch\":0}}";
+        char *pub_topic = "/sys/hcixG5BeXXR/node0/thing/event/property/post";
+        char *pub_payload = "{\"id\":\"1\",\"version\":\"1.0\",\"params\":{\"HeartRate\":90}}";
 
         res = aiot_mqtt_pub(mqtt_handle, pub_topic, (uint8_t *)pub_payload, (uint32_t)strlen(pub_payload), 0);
         if (res < 0) {
@@ -438,6 +437,14 @@ int main(int argc, char *argv[])
     */
 
     while (1) {
+        /* 子设备按照alink协议上报物模型中的属性消息. 格式须为json. topic中填入子设备自己的product_key, device_name. 每条消息id字段要+1 */
+        char *pub_topic = "/sys/hcixG5BeXXR/node0/thing/event/property/post";
+        char *pub_payload = "{\"id\":\"1\",\"version\":\"1.0\",\"params\":{\"HeartRate\":90}}";
+
+        res = aiot_mqtt_pub(mqtt_handle, pub_topic, (uint8_t *)pub_payload, (uint32_t)strlen(pub_payload), 0);
+        if (res < 0) {
+            printf("aiot_mqtt_pub failed, res: -0x%04X\n", -res);
+        }
         sleep(1);
     }
 
@@ -466,3 +473,6 @@ int main(int argc, char *argv[])
     return 0;
 }
 
+#ifdef FINSH_USING_MSH
+MSH_CMD_EXPORT_ALIAS(subdev_demo_main, ali_subdev_sample, ali subdev sample);
+#endif

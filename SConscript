@@ -71,7 +71,8 @@ src += Glob('LinkSDK/external/*.c')
 src += Glob('LinkSDK/portfiles/aiot_port/rtthread_port.c')
 
 # samples
-src += Glob('samples/mqtt_basic_demo.c')
+# src += Glob('samples/mqtt_basic_demo.c')
+# src += Glob('samples/subdev_basic_demo.c')
 
 group = DefineGroup('ali_link_sdk', src, depend = [''], CPPPATH = CPPPATH)
 

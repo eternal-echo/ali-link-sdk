@@ -19,10 +19,10 @@
 #include "aiot_mqtt_api.h"
 
 /* TODO: 替换为自己设备的三元组 */
-#define PKG_USING_ALI_LINK_PRODUCT_KEY "hcixG5BeXXR"
+#define PKG_USING_ALI_LINK_PRODUCT_KEY "hcixxJENrUz"
 #define PKG_USING_ALI_LINK_PRODUCT_SECRET "X8WmP94UNIycqpeR"
-#define PKG_USING_ALI_LINK_DEVICE_NAME "coordinator-wifi"
-#define PKG_USING_ALI_LINK_DEVICE_SECRET "c767d9aba27822f2a8ee3819c8e3cbfb"
+#define PKG_USING_ALI_LINK_DEVICE_NAME "coordinator0"
+#define PKG_USING_ALI_LINK_DEVICE_SECRET "bafdf3991aeab4fe2991e3d281a9f725"
 char *product_key       = PKG_USING_ALI_LINK_PRODUCT_KEY;
 char *device_name       = PKG_USING_ALI_LINK_DEVICE_NAME;
 char *device_secret     = PKG_USING_ALI_LINK_DEVICE_SECRET;
@@ -42,7 +42,7 @@ char *device_secret     = PKG_USING_ALI_LINK_DEVICE_SECRET;
 
     详情请见: https://help.aliyun.com/document_detail/147356.html
 */
-char  *mqtt_host = "hcixG5BeXXR.iot-as-mqtt.cn-shanghai.aliyuncs.com";
+char  *mqtt_host = "hcixxJENrUz.iot-as-mqtt.cn-shanghai.aliyuncs.com";
 
 /* 位于portfiles/aiot_port文件夹下的系统适配函数集合 */
 extern aiot_sysdep_portfile_t g_aiot_sysdep_portfile;
