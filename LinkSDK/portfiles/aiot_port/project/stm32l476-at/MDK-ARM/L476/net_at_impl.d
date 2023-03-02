@@ -1,0 +1,11 @@
+l476\net_at_impl.o: ..\..\..\at\net_at_impl.c
+l476\net_at_impl.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+l476\net_at_impl.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+l476\net_at_impl.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+l476\net_at_impl.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+l476\net_at_impl.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+l476\net_at_impl.o: ..\..\..\..\..\core\aiot_state_api.h
+l476\net_at_impl.o: ..\..\..\..\..\core\aiot_sysdep_api.h
+l476\net_at_impl.o: ..\..\..\os_net_interface.h
+l476\net_at_impl.o: ..\..\..\at\aiot_at_api.h
+l476\net_at_impl.o: ..\..\..\..\..\core\utils\core_list.h

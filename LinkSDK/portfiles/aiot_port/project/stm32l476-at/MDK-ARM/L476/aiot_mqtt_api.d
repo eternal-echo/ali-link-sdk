@@ -1,0 +1,15 @@
+l476\aiot_mqtt_api.o: ..\..\..\..\..\core\aiot_mqtt_api.c
+l476\aiot_mqtt_api.o: ..\..\..\..\..\core\utils\core_mqtt.h
+l476\aiot_mqtt_api.o: ..\..\..\..\..\core\sysdep\core_stdinc.h
+l476\aiot_mqtt_api.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+l476\aiot_mqtt_api.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+l476\aiot_mqtt_api.o: ..\..\..\..\..\core\utils\core_list.h
+l476\aiot_mqtt_api.o: ..\..\..\..\..\core\utils\core_string.h
+l476\aiot_mqtt_api.o: ..\..\..\..\..\core\aiot_state_api.h
+l476\aiot_mqtt_api.o: ..\..\..\..\..\core\aiot_sysdep_api.h
+l476\aiot_mqtt_api.o: ..\..\..\..\..\core\utils\core_log.h
+l476\aiot_mqtt_api.o: ..\..\..\..\..\core\utils\core_auth.h
+l476\aiot_mqtt_api.o: ..\..\..\..\..\core\utils\core_sha256.h
+l476\aiot_mqtt_api.o: ..\..\..\..\..\core\utils\core_global.h
+l476\aiot_mqtt_api.o: ..\..\..\..\..\core\utils\core_diag.h
+l476\aiot_mqtt_api.o: ..\..\..\..\..\core\aiot_mqtt_api.h

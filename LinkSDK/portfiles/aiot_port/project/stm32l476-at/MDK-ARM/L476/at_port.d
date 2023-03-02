@@ -1,0 +1,9 @@
+l476\at_port.o: ..\..\..\at_port.c
+l476\at_port.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+l476\at_port.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+l476\at_port.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+l476\at_port.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+l476\at_port.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+l476\at_port.o: ..\..\..\..\..\core\aiot_state_api.h
+l476\at_port.o: ..\..\..\..\..\core\aiot_sysdep_api.h
+l476\at_port.o: ..\..\..\os_net_interface.h
